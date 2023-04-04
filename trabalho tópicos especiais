@@ -1,0 +1,40 @@
+# Dicionário de itens do menu com preços
+menu = {
+    "Hambúrguer": 10.00,
+    "Batata Frita": 5.00,
+    "Refrigerante": 3.00
+}
+
+# Lista de pedidos de clientes
+pedidos = []
+
+# Função para adicionar item ao menu
+def adicionar_item_menu(nome, preco):
+    menu[nome] = preco
+    print(f"Item {nome} adicionado ao menu com sucesso!")
+
+# Função para remover item do menu
+def remover_item_menu(nome):
+    if nome in menu:
+        del menu[nome]
+        print(f"Item {nome} removido do menu com sucesso!")
+    else:
+        print(f"Item {nome} não encontrado no menu.")
+
+# Função para adicionar pedido de cliente
+def adicionar_pedido(nome, item, quantidade):
+    if item in menu:
+        preco = menu[item]
+        total = preco * quantidade
+        pedidos.append({"cliente": nome, "item": item, "quantidade": quantidade, "total": total})
+        print(f"Pedido de {quantidade} {item}(s) adicionado para {nome} com sucesso!")
+    else:
+        print(f"Item {item} não encontrado no menu.")
+
+# Função para imprimir relatório de pedidos
+def imprimir_relatorio():
+    total_vendas = 0
+    for pedido in pedidos:
+        print(f"{pedido['cliente']}: {pedido['quantidade']} x {pedido['item']} = R${pedido['total']:.2f}")
+        total_vendas += pedido['total']
+    print(f"Total de vendas: R${total_vendas:.2f}")
